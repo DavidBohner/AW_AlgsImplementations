@@ -7,16 +7,21 @@ public class Graph {
 	
 	public Graph() {
 		//this.front = null;
-		this.nodeList = null;
+		this.nodeList = new ArrayList<GraphNode>();
 	}
 	
 	public void addNode(ArrayList<GraphNode> neighbours) {
 		GraphNode node = new GraphNode();
 		nodeList.add(node);
+		if(neighbours == null) return;
 		for(GraphNode n: neighbours) {
 			n.addNeighbour(node);
 			node.addNeighbour(n);
 		}
+	}
+	
+	public void addNode(GraphNode node) {
+		nodeList.add(node);
 	}
 	
 	public GraphNode getFirst() {
