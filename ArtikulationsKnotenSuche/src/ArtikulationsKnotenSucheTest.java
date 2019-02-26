@@ -32,7 +32,8 @@ class ArtikulationsKnotenSucheTest {
 		neighbourHandle(nodes[12], new GraphNode[] {nodes[10], nodes[11]});
 		
 		HashSet<GraphNode> output = ArtikulationsKnotenSuche.search();
-		//assertTrue(output.contains(nodes[1])); System.out.println(1); TODO visitedKnots not being populated
+		System.out.println(output.size());
+		assertTrue(output.contains(nodes[1])); //TODO visitedKnots not being populated
 		assertTrue(output.contains(nodes[3]));
 		assertTrue(output.contains(nodes[10]));
 		assertFalse(output.contains(nodes[9]));	}
