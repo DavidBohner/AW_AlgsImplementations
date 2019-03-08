@@ -53,9 +53,10 @@ public class ArtikulationsKnotenSuche {
 						node.lowNum = n.dfsNum;
 					}
 					
+				}
+				if(n.dfsLevel - 1 == node.dfsLevel) {
 					if(n.lowNum >= node.dfsNum) artikulationsKnoten.add(node);
 				}
-				
 			}
 		}
 	}
