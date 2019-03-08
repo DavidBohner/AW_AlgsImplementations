@@ -23,7 +23,7 @@ public class ArtikulationsKnotenSuche {
 		visitedKnots = new HashSet<GraphNode>();
 		dfsNum = 1;
 		
-		dfs(root, 0);
+		dfs(root, 1);
 		
 		//for() {
 			
@@ -36,7 +36,7 @@ public class ArtikulationsKnotenSuche {
 		//ArrayList<GraphNode> toVisit = new ArrayList<GraphNode>();
 		node.dfsNum = dfsNum;
 		node.dfsLevel = dfsLevel;
-		node.lowNum = dfsLevel + 1;
+		node.lowNum = dfsLevel;
 		
 		/*for(GraphNode n: node.adjIter()) {
 			if(!visitedKnots.contains(n)) {
@@ -65,15 +65,16 @@ public class ArtikulationsKnotenSuche {
 		/*for(GraphNode n: toVisit) {
 			dfs(n, dfsLevel +1, dfsNum++);
 		}*/
-		if(dfsLevel == 0) {
+		if(dfsLevel == 1) {
 			int links = 0;
 			for(GraphNode n: node.adjIter()) {
-				if(n.dfsLevel == 1) links++;
+				if(n.dfsLevel == 2) links++;
 			}
 			if(links >= 2) artikulationsKnoten.add(node);
+			//if(links >= 2) System.out.println(node.dfsNum);
 		} else {
 			for(GraphNode n: node.adjIter()) {
-				if(n.dfsLevel - 1 != node.dfsLevel) {
+				if(n.dfsLevel + 1 != node.dfsLevel) {
 					if(n.lowNum < node.lowNum) {
 						node.lowNum = n.lowNum;
 					} else if(n.dfsNum < node.lowNum) {
@@ -81,6 +82,7 @@ public class ArtikulationsKnotenSuche {
 					}
 					
 					if(n.lowNum >= node.dfsNum) artikulationsKnoten.add(node);
+					//if(n.lowNum >= node.dfsNum) System.out.println(node.dfsNum); 
 				}
 				
 			}
