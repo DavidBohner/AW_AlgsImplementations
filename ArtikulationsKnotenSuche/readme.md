@@ -1,6 +1,6 @@
 # ArtikulationsKnotenSuche
 
-Implements (Tarjan's) algorithm, not introduced as such in the lecture, on an undirected graph.
+Implements (Tarjan's) algorithm, not introduced as such in the lecture, on an undirected connected graph.
 
 ## Current functionality:
 Before you can use ArtikulationsKnotenSuche.search(), you must first set ArtikulationsKnotenSuche.graph to a graph, built from graph.Graph, of your choosing.
