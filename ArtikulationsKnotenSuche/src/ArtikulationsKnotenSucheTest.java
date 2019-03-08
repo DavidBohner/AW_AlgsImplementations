@@ -9,7 +9,6 @@ class ArtikulationsKnotenSucheTest {
 
 	@Test
 	void testSearch() {
-		Graph graph = new Graph();
 		GraphNode[] nodes = new GraphNode[13];
 		ArtikulationsKnotenSuche.graph = new Graph();
 		
@@ -32,7 +31,7 @@ class ArtikulationsKnotenSucheTest {
 		neighbourHandle(nodes[12], new GraphNode[] {nodes[10], nodes[11]});
 		
 		HashSet<GraphNode> output = ArtikulationsKnotenSuche.search();
-		assertTrue(output.contains(nodes[1])); //TODO visitedKnots not being populated
+		assertTrue(output.contains(nodes[1]));
 		assertTrue(output.contains(nodes[3]));
 		assertTrue(output.contains(nodes[10]));
 		assertFalse(output.contains(nodes[9]));	}

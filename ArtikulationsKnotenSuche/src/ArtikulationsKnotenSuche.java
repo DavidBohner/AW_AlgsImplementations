@@ -1,6 +1,5 @@
 import graph.Graph;
 import graph.GraphNode;
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class ArtikulationsKnotenSuche {
@@ -45,7 +44,6 @@ public class ArtikulationsKnotenSuche {
 				if(n.dfsLevel == 2) links++;
 			}
 			if(links >= 2) artikulationsKnoten.add(node);
-			//if(links >= 2) System.out.println(node.dfsNum);
 		} else {
 			for(GraphNode n: node.adjIter()) {
 				if(n.dfsLevel + 1 != node.dfsLevel) {
@@ -56,11 +54,9 @@ public class ArtikulationsKnotenSuche {
 					}
 					
 					if(n.lowNum >= node.dfsNum) artikulationsKnoten.add(node);
-					//if(n.lowNum >= node.dfsNum) System.out.println(node.dfsNum); 
 				}
 				
 			}
 		}
-		System.out.println(node.dfsNum + " " + dfsLevel + " " + node.lowNum);
 	}
 }
