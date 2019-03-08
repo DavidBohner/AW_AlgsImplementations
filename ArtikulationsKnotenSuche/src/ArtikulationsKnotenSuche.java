@@ -10,11 +10,6 @@ public class ArtikulationsKnotenSuche {
 	static int dfsNum;
 	
 	
-/*	public static void main(String[] args) {
-		graph = new Graph();
-		
-	}*/
-	
 	public static HashSet<GraphNode> search() {
 		if(graph.getSize() == 0) return new HashSet<GraphNode>();
 		
@@ -25,30 +20,15 @@ public class ArtikulationsKnotenSuche {
 		
 		dfs(root, 1);
 		
-		//for() {
-			
-		//}
 		
 		return artikulationsKnoten;
 	}
 	
 	public static void dfs(GraphNode node, int dfsLevel) {
-		//ArrayList<GraphNode> toVisit = new ArrayList<GraphNode>();
 		node.dfsNum = dfsNum;
 		node.dfsLevel = dfsLevel;
-		node.lowNum = dfsLevel;
+		node.lowNum = dfsNum;
 		
-		/*for(GraphNode n: node.adjIter()) {
-			if(!visitedKnots.contains(n)) {
-				visitedKnots.add(n);
-				toVisit.add(n);
-			}
-			//if((n.dfsNum != Integer.MIN_VALUE) && (n.dfsNum - 1 != node.dfsNum)) { //If it's not a direct predecessor ...
-				//if(node.lowNum > n.dfsNum) {
-					
-				//}
-			//}
-		}*/
 		
 		visitedKnots.add(node);
 		
@@ -59,12 +39,6 @@ public class ArtikulationsKnotenSuche {
 			}
 		}
 		
-		//if((dfsLevel == 0) && (toVisit.size() >= 2)) artikulationsKnoten.add(node);
-		//if((dfsLevel == 0)) artikulationsKnoten.add(node);
-		
-		/*for(GraphNode n: toVisit) {
-			dfs(n, dfsLevel +1, dfsNum++);
-		}*/
 		if(dfsLevel == 1) {
 			int links = 0;
 			for(GraphNode n: node.adjIter()) {
