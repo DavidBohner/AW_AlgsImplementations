@@ -9,7 +9,8 @@ public class ArtikulationsKnotenSuche {
 	static int dfsNum;
 	
 	
-	public static HashSet<GraphNode> search() {
+	public static HashSet<GraphNode> search(Graph inputGraph) {
+		graph = inputGraph;
 		if(graph.getSize() == 0) return new HashSet<GraphNode>();
 		
 		GraphNode root = graph.getFirst();

@@ -9,42 +9,28 @@ class ArtikulationsKnotenSucheTest {
 
 	@Test
 	void testSearch() {
-		GraphNode[] nodes = new GraphNode[13];
-		ArtikulationsKnotenSuche.graph = new Graph();
+		Graph graph = new Graph(12);
 		
-		for(int i=1; i<nodes.length; i++) {
-			nodes[i] = new GraphNode();
-			ArtikulationsKnotenSuche.graph.addNode(nodes[i]);
-		}
+		graph.connect(1, new int[] {2, 9, 10});
+		graph.connect(2, new int[] {3, 9});
+		graph.connect(3, new int[] {4, 8, 9});
+		graph.connect(4, new int[] {5});
+		graph.connect(5, new int[] {6, 8});
+		graph.connect(6, new int[] {7, 8});
+		graph.connect(7, new int[] {8});
+		graph.connect(10, new int[] {11, 12});
+		graph.connect(11, new int[] {12});
 		
-		neighbourHandle(nodes[1], new GraphNode[] {nodes[2], nodes[9], nodes[10]});
-		neighbourHandle(nodes[2], new GraphNode[] {nodes[1], nodes[3], nodes[9]});
-		neighbourHandle(nodes[3], new GraphNode[] {nodes[2], nodes[4], nodes[8], nodes[9]});
-		neighbourHandle(nodes[4], new GraphNode[] {nodes[3], nodes[5]});
-		neighbourHandle(nodes[5], new GraphNode[] {nodes[4], nodes[6], nodes[8]});
-		neighbourHandle(nodes[6], new GraphNode[] {nodes[5], nodes[7], nodes[8]});
-		neighbourHandle(nodes[7], new GraphNode[] {nodes[6], nodes[8]});
-		neighbourHandle(nodes[8], new GraphNode[] {nodes[3], nodes[5], nodes[6], nodes[7]});
-		neighbourHandle(nodes[9], new GraphNode[] {nodes[1], nodes[2], nodes[3]});
-		neighbourHandle(nodes[10], new GraphNode[] {nodes[1], nodes[11], nodes[12]});
-		neighbourHandle(nodes[11], new GraphNode[] {nodes[10], nodes[12]});
-		neighbourHandle(nodes[12], new GraphNode[] {nodes[10], nodes[11]});
 		
-		HashSet<GraphNode> output = ArtikulationsKnotenSuche.search();
-		assertTrue(output.contains(nodes[1]));
-		assertTrue(output.contains(nodes[3]));
-		assertTrue(output.contains(nodes[10]));
-		assertFalse(output.contains(nodes[9]));	}
+		HashSet<GraphNode> output = ArtikulationsKnotenSuche.search(graph);
+		assertTrue(output.contains(graph.getNode(1)));
+		assertTrue(output.contains(graph.getNode(3)));
+		assertTrue(output.contains(graph.getNode(10)));
+		assertFalse(output.contains(graph.getNode(9)));
+	}
 
 	@Test
 	void testDfs() {
 		fail("Not yet implemented");
-	}
-
-	
-	public void neighbourHandle(GraphNode node, GraphNode[] neighbours) {
-		for(GraphNode n: neighbours) {
-			node.addNeighbour(n);
-		}
 	}
 }
