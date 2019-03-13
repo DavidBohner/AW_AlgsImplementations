@@ -1,20 +1,20 @@
-import graph.Graph;
-import graph.GraphNode;
+import ch.DavidBohner.graphs.*;
+import ch.sven_pfiffner.graphs.NodeType;
 import java.util.HashSet;
 
 public class ArtikulationsKnotenSuche {
-	static Graph graph;
-	static HashSet<GraphNode> artikulationsKnoten;
-	static HashSet<GraphNode> visitedKnots;
+	static ArtikulationsGraph graph;
+	static HashSet<ArtikulationsNode> artikulationsKnoten;
+	static HashSet<ArtikulationsNode> visitedKnots;
 	static int dfsNum;
 	
 	
-	public static HashSet<GraphNode> search() {
-		if(graph.getSize() == 0) return new HashSet<GraphNode>();
+	public static HashSet<ArtikulationsNode> search() {
+		if(graph.getSize() == 0) return new HashSet<ArtikulationsNode>();
 		
-		GraphNode root = graph.getFirst();
-		artikulationsKnoten = new HashSet<GraphNode>();
-		visitedKnots = new HashSet<GraphNode>();
+		ArtikulationsNode root = (ArtikulationsNode) graph.getFirst();
+		artikulationsKnoten = new HashSet<ArtikulationsNode>();
+		visitedKnots = new HashSet<ArtikulationsNode>();
 		dfsNum = 1;
 		
 		dfs(root, 1);
@@ -23,15 +23,15 @@ public class ArtikulationsKnotenSuche {
 		return artikulationsKnoten;
 	}
 	
-	public static void dfs(GraphNode node, int dfsLevel) {
-		node.dfsNum = dfsNum;
-		node.dfsLevel = dfsLevel;
-		node.lowNum = dfsNum;
+	public static void dfs(ArtikulationsNode node, int dfsLevel) {
+		node.setDfsNum(dfsNum);
+		node.setDfsLevel(dfsLevel);
+		node.setLowNum(dfsNum);
 		
 		
 		visitedKnots.add(node);
 		
-		for(GraphNode n: node.adjIter()) {
+		for(ArtikulationsNode n: graph.getAdjacency(node)) {
 			if(!visitedKnots.contains(n)) {
 				dfsNum++;
 				dfs(n, dfsLevel +1);
@@ -40,12 +40,12 @@ public class ArtikulationsKnotenSuche {
 		
 		if(dfsLevel == 1) {
 			int links = 0;
-			for(GraphNode n: node.adjIter()) {
-				if(n.dfsLevel == 2) links++;
+			for(ArtikulationsNode n: graph.getAdjacency(node)) {
+				if(n.getDfsLevel == 2) links++;
 			}
 			if(links >= 2) artikulationsKnoten.add(node);
 		} else {
-			for(GraphNode n: node.adjIter()) {
+			for(ArtikulationsNode n: node.adjIter()) {
 				if(n.dfsLevel + 1 != node.dfsLevel) {
 					if(n.lowNum < node.lowNum) {
 						node.lowNum = n.lowNum;

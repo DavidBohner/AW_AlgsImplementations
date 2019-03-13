@@ -2,9 +2,15 @@ package ch.DavidBohner.graphs;
 import ch.sven_pfiffner.graphs.*;
 import java.util.LinkedList;
 
+/**
+ * Implements an undirected graph datastructure which provides some lightweight methods to use in for Tarjan's biconnected-finding algorithm
+ * 
+ * @author Sven Pfiffner
+ * @author David Bohner
+ */
 public class ArtikulationsGraph extends Graph {
-	private ArtikulationsNode[] nodeArray; //Stores the nodes of the graph as an array
-	private LinkedList<ArtikulationsNode>[] adjList; //Stores the graphs connections and vertices as an adjacency list
+	private NodeType[] nodeArray; //Stores the nodes of the graph as an array
+	private LinkedList<NodeType>[] adjList; //Stores the graphs connections and vertices as an adjacency list
 	
 	
 	public ArtikulationsGraph(int size) {
@@ -19,8 +25,14 @@ public class ArtikulationsGraph extends Graph {
 		this.adjList = new LinkedList[size];
 	}
 	
-	public LinkedList<Node> getAdjacency(Node n) {
-		return adjList[n.getValue()];
+	public int getSize() {
+		return nodeArray.length;
+	}
+	
+	public ArtikulationsNode getFirst() {
+		if(getSize() == 0) throw new NullPointerException("The graph does not contain any nodes.");
+		return nodeArray[0];
 	}
 	
 }
+

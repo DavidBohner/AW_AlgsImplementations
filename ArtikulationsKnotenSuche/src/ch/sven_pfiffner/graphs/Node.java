@@ -5,7 +5,7 @@ package ch.sven_pfiffner.graphs;
  * 
  * @author Sven Pfiffner
  */
-public class Node {
+public class Node implements NodeType {
 
 	private int value; //The index value of the node
 	private int degree; //The current degree of the node

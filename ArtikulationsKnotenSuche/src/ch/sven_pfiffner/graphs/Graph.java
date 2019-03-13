@@ -9,8 +9,8 @@ import java.util.LinkedList;
  */
 public class Graph {
 
-	private Node[] nodeArray; //Stores the nodes of the graph as an array
-	private LinkedList<Node>[] adjList; //Stores the graphs connections and vertices as an adjacency list
+	private NodeType[] nodeArray; //Stores the nodes of the graph as an array
+	private LinkedList<NodeType>[] adjList; //Stores the graphs connections and vertices as an adjacency list
 	
 	/**
 	 * Create a new graph with given size and no edges
@@ -18,7 +18,7 @@ public class Graph {
 	@SuppressWarnings("unchecked")
 	public Graph(int size) {
 		
-		this.nodeArray = new Node[size];
+		this.nodeArray = new NodeType[size];
 		
 		//Fill node array
 		for(int i = 0; i<size; i++) {
@@ -33,7 +33,7 @@ public class Graph {
 	/**
 	 * Create a new graph from a given adjacency list
 	 */
-	public Graph(LinkedList<Node>[] adjList) {
+	public Graph(LinkedList<NodeType>[] adjList) {
 		
 		this.nodeArray = new Node[adjList.length];
 		
@@ -48,21 +48,21 @@ public class Graph {
 	/**
 	 * Return a list of adjacent nodes to a given node
 	 */
-	public LinkedList<Node> getAdjacency(Node n) {
+	public LinkedList<NodeType> getAdjacency(NodeType n) {
 		return adjList[n.getValue()];
 	}
 	
 	/**
 	 * Return true if two given nodes are connected, false if not
 	 */
-	public boolean connected(Node x, Node y) {
+	public boolean connected(NodeType x, NodeType y) {
 		return(adjList[x.getValue()].contains(y) && adjList[y.getValue()].contains(x));
 	}
 	
 	/**
 	 * Connect two nodes in the graph with an edge
 	 */
-	public void connectNodes(Node x, Node y) {
+	public void connectNodes(NodeType x, NodeType y) {
 		adjList[x.getValue()].add(y);
 		adjList[y.getValue()].add(x);
 	}
@@ -71,7 +71,7 @@ public class Graph {
 	 * Remove connection between two nodes if there is one. Return true if connection was removed.
 	 * If no such connection exists, return false and keep graph as it is
 	 */
-	public boolean removeConnection(Node x, Node y) {
+	public boolean removeConnection(NodeType x, NodeType y) {
 		
 		boolean connectionExists;
 		
@@ -86,7 +86,7 @@ public class Graph {
 	/**
 	 * Return the node corresponding to a given index
 	 */
-	public Node getNodeByIndex(int i) {
+	public NodeType getNodeByIndex(int i) {
 		return nodeArray[i];
 	}
 }
