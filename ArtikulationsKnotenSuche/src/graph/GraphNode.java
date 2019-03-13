@@ -1,6 +1,11 @@
 package graph;
 import java.util.ArrayList;
 
+/**
+ * Implements a basic data structure for an individual node in Graph.java
+ * @author DavidBohner
+ */
+
 public class GraphNode {
 	private ArrayList<GraphNode> adjList;
 	public int dfsNum;

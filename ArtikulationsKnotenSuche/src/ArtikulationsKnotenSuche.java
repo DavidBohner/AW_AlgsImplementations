@@ -2,6 +2,12 @@ import graph.Graph;
 import graph.GraphNode;
 import java.util.HashSet;
 
+/**
+ * Implements Tarjan's algorithm on an undirected connected graph to find all biconnected components (ger: Artikulationsknoten).
+ * 
+ * @author DavidBohner
+ */
+
 public class ArtikulationsKnotenSuche {
 	static Graph graph;
 	static HashSet<GraphNode> artikulationsKnoten;

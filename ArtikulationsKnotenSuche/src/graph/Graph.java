@@ -1,12 +1,16 @@
 package graph;
 import java.util.ArrayList;
 
+/**
+ * Implements a graph data structure for ArtikulationsKnotenSuche to search on.
+ * 
+ * @author DavidBohner
+ */
+
 public class Graph {
-	//private GraphNode front;
 	private ArrayList<GraphNode> nodeList;
 	
 	public Graph() {
-		//this.front = null;
 		this.nodeList = new ArrayList<GraphNode>();
 	}
 	
@@ -47,8 +51,8 @@ public class Graph {
 	}
 	
 	public void connect(int node1ID, int node2ID) {
-		GraphNode node1 = nodeList.get(node1ID);
-		GraphNode node2 = nodeList.get(node2ID);
+		GraphNode node1 = nodeList.get(node1ID - 1);
+		GraphNode node2 = nodeList.get(node2ID - 1);
 		connect(node1, node2);
 	}
 	

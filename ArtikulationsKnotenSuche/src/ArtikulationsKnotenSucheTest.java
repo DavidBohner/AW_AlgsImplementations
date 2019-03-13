@@ -31,6 +31,25 @@ class ArtikulationsKnotenSucheTest {
 
 	@Test
 	void testDfs() {
-		fail("Not yet implemented");
+		Graph graph = new Graph(10);
+		graph.connect(1, 2);
+		graph.connect(2, new int[] {3, 5});
+		graph.connect(3, 4);
+		graph.connect(4, new int[] {6, 7});
+		graph.connect(8, new int[] {6, 7});
+		graph.connect(9, 10);
+		
+		//Setting up environment manually, would normally be handled by ArtikulationsKnotenSuche.search()
+		ArtikulationsKnotenSuche.visitedKnots = new HashSet<GraphNode>();
+		ArtikulationsKnotenSuche.artikulationsKnoten = new HashSet<GraphNode>();
+		ArtikulationsKnotenSuche.dfsNum = 1;
+		
+		ArtikulationsKnotenSuche.dfs(graph.getNode(2), 1);
+		
+		assertTrue(graph.getNode(2).dfsNum == 1);
+		assertTrue(graph.getNode(8).dfsNum == 6);
+		assertTrue(graph.getNode(5).dfsNum == 8);
+		assertTrue(ArtikulationsKnotenSuche.visitedKnots.contains(graph.getNode(1)));
+		assertFalse(ArtikulationsKnotenSuche.visitedKnots.contains(graph.getNode(10)));
 	}
 }
